@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
 
 @custom-variant dark (&:is(.dark *));
@@ -25,20 +24,26 @@
   html {
     @apply font-sans;
   }
+
+
 }
 
 html {
-  /* evita que o texto aumente sozinho quando o celular gira a tela */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
 body {
-  min-height: 100dvh; /* dvh = dynamic viewport height, considera barra do navegador mobile que aparece/some */
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: transparent; /* remove aquele flash cinza ao tocar em links/botões no mobile */
-  overscroll-behavior-y: none; /* evita o "bounce" de puxar a página pra baixo no iOS */
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+main {
+  flex: 1;
+  padding: 24px;
+  box-sizing: border-box;
 }
 
 img, picture, svg, video {
@@ -48,13 +53,11 @@ img, picture, svg, video {
 
 button, input, select, textarea {
   font: inherit;
-  color: inherit;
 }
 
 button {
   cursor: pointer;
   border: none;
-  background: none;
 }
 
 a {
@@ -63,22 +66,55 @@ a {
 }
 
 /* ============================================
-   VARIÁVEIS DE TEMA
+   TEMA — fonte única de verdade
 ============================================ */
-
 @theme {
-  /* Colors */
+  /* Font */
+  --font-sans: 'Inter Variable', sans-serif;
+
+  /* Suas cores custom (continuam disponíveis como bg-bg, bg-primary etc) */
   --color-bg: #0A0A0A;
   --color-text: #F5F5F0;
+  --color-text-on: #0A0A0A;
   --color-text-secondary: #B0B0AA;
   --color-primary: #C6FF00;
+  --color-primary-hover: #D4FF33;
   --color-secondary: #64748B;
   --color-border: #3A3A3A;
 
-  /* Cards */
   --color-card-elevated-1: #141414;
   --color-card-elevated-2: #1E1E1E;
   --color-card-elevated-3: #282828;
+
+  /* Cores que os componentes shadcn usam (bg-background, bg-input etc) */
+  --color-background: #0A0A0A;
+  --color-foreground: #F5F5F0;
+  --color-card: #141414;
+  --color-card-foreground: #F5F5F0;
+  --color-popover: #141414;
+  --color-popover-foreground: #F5F5F0;
+  --color-primary-foreground: #0A0A0A;
+  --color-secondary-foreground: #F5F5F0;
+  --color-muted: #1E1E1E;
+  --color-muted-foreground: #B0B0AA;
+  --color-accent: #1E1E1E;
+  --color-accent-foreground: #F5F5F0;
+  --color-destructive: #E5484D;
+  --color-input: #3A3A3A;
+  --color-ring: #C6FF00;
+  --color-chart-1: #C6FF00;
+  --color-chart-2: #B0B0AA;
+  --color-chart-3: #64748B;
+  --color-chart-4: #3A3A3A;
+  --color-chart-5: #282828;
+  --color-sidebar: #141414;
+  --color-sidebar-foreground: #F5F5F0;
+  --color-sidebar-primary: #C6FF00;
+  --color-sidebar-primary-foreground: #0A0A0A;
+  --color-sidebar-accent: #1E1E1E;
+  --color-sidebar-accent-foreground: #F5F5F0;
+  --color-sidebar-border: #3A3A3A;
+  --color-sidebar-ring: #C6FF00;
 
   /* Spacing */
   --spacing-xs: 4px;
@@ -91,6 +127,8 @@ a {
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-2xl: 36px;
 
   /* Font sizes */
   --text-sm: 0.875rem;
@@ -106,77 +144,18 @@ a {
   -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
 }
 
+/* ============================================
+   ESTRUTURA BASE PRA APP MOBILE
+============================================ */
 :root {
-  --color-bg: #0A0A0A;
-  --color-text: #F5F5F0;
-  --color-text-secondary: #B0B0AA;
-  --color-primary: #C6FF00;
-  --color-secondary: #64748b;
-  --color-border: #3A3A3A;
-
-  --card-elevated-1: #141414;
-  --card-elevated-2: #1E1E1E;
-  --card-elevated-3: #282828;
-
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.5rem;
-
   --font-opacity: 70%;
 
-  /* respeita o "notch"/área segura em iPhones e Androids com câmera recortada */
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-left: env(safe-area-inset-left, 0px);
   --safe-right: env(safe-area-inset-right, 0px);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
 }
 
-/* ============================================
-   ESTRUTURA BASE PRA APP MOBILE
-============================================ */
 #root {
   min-height: 100dvh;
   display: flex;
@@ -187,84 +166,3 @@ a {
   padding-right: var(--safe-right);
 }
 
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-}
-
-@theme inline {
-  --font-heading: var(--font-sans);
-  --font-sans: 'Inter Variable', sans-serif;
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
-  --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}

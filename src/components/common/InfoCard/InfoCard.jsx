@@ -1,4 +1,5 @@
 import { ChevronRight } from 'lucide-react'
+import {Link} from "react-router";
 
 const InfoCard = ({ title, value, description, icon, link }) => {
     if (link === false) {
@@ -24,7 +25,7 @@ const InfoCard = ({ title, value, description, icon, link }) => {
 
     if (link === true) {
         return (
-            <a href={"#"} className={"flex flex-row min-w-full w-full max-w-full min-h-25 p-4 items-start bg-card-elevated-1 border " +
+            <Link to={"/daytraining"} className={"flex flex-row min-w-full w-full max-w-full min-h-25 p-4 items-start bg-card-elevated-1 border " +
                 "border-zinc-700/20 rounded-md justify-between box-border hover:bg-card-elevated-2 transition-colors duration-300 cursor-pointer" }>
                 <div className={"flex flex-col gap-sp items-start min-w-0 max-w-[80%] wrap-anywhere min-h-full max-h-full"}>
                     <p className={"text-[0.7rem] font-medium text-text-secondary"}>{title}</p>
@@ -39,7 +40,7 @@ const InfoCard = ({ title, value, description, icon, link }) => {
                         {icon}
                     </div>
                 </div>
-            </a>
+            </Link>
         )
     }
 }

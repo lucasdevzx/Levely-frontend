@@ -8,7 +8,7 @@ import {TotalVolumeMonthCard} from "@/components/features/Home/TotalVolumeMonthC
 
 function Home() {
     return (
-        <>
+        <div className="flex flex-col">
             <Welcome />
             <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2 ">
@@ -20,7 +20,7 @@ function Home() {
                 <InfoCard link={true} title={"Treino pendente"} value={"Peito e triceps"} description={"esta semana"} icon={<Calendar size={24} color={"var(--color-primary)"} />} />
             </div>
             <MoreAction />
-        </>
+        </div>
     )
 }
 

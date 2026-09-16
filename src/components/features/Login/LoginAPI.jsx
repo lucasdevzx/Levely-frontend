@@ -12,6 +12,7 @@ export function LoginAPI() {
         try {
             const res = await api.post('/authentication/login', data);
             localStorage.setItem('token', res.data.token);
+            localStorage.setItem('username', res.data.name);
             navigation('/');
             console.log('Login bem-sucedido', res.data);
         } catch (err) {

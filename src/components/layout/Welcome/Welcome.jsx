@@ -1,14 +1,12 @@
 import { Bell } from 'lucide-react'
 
-const Welcome = ({name}) => {
+const Welcome = ({name, trainingplanners}) => {
     return (
         <div className={"flex flex-row gap-4 items-start w-full max-w-full justify-between mb-8"}>
             <div>
                 <div>
                     <select>
-                        <option value="java">Java</option>
-                        <option value="react">React</option>
-                        <option value="spring">Spring Boot</option>
+                        <option value="sd">{trainingplanners}</option>
                     </select>
                 </div>
                 <div className={"flex flex-col gap-1 items-start mt-5"}>

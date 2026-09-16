@@ -5,11 +5,12 @@ import MoreAction from "@/components/layout/MoreAction/MoreAction.jsx";
 import Welcome from "@/components/layout/Welcome/Welcome.jsx";
 import {CompletedTrainingsCard} from "@/components/features/Home/CompletedTrainingsCard.jsx";
 import {TotalVolumeMonthCard} from "@/components/features/Home/TotalVolumeMonthCard.jsx";
+import {TrainingPlannersList} from "@/components/features/Home/TrainingPlannersList.jsx";
 
 function Home() {
     return (
         <div className="flex flex-col">
-            <Welcome />
+            <TrainingPlannersList />
             <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2 ">
                     <ProgressCard className={"col-span-2"} description="Seu progresso" />

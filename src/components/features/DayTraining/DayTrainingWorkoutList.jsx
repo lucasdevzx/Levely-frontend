@@ -3,22 +3,28 @@ import api from "@/api/api.js";
 import {useState} from "react";
 import {TrainingCard} from "@/components/common/TrainingCard/TrainingCard.jsx";
 import {Dumbbell} from "lucide-react";
+import {useDayTrainingStore} from "@/components/hooks/useDayTrainingStore.js";
 
 export function DayTrainingWorkoutList() {
     const [dayTrainings, setDayTrainings] = useState([]);
+    const {selectedDayTrainingId, setSelectedDayTrainingId} = useDayTrainingStore();
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        api.get('/daytrainingworkouts', {
-            headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`},
-            params: {page: 0, size: 10}
-        }).then(response => {
-            setDayTrainings(response.data.content);
-        }).catch(error => {
-            setError(error);
-            console.error('Error:', error);
-        });
-    }, [])
+        if (selectedDayTrainingId) {
+            api.get(`/daytrainingworkouts/daytraining/${selectedDayTrainingId}`, {
+                headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`},
+            }).then(response => {
+                setDayTrainings(response.data);
+            }).catch(error => {
+                setError(error);
+                setSelectedDayTrainingId(null);
+                console.error('Error:', error);
+            });
+        } else{
+            setSelectedDayTrainingId(null);
+        }
+    }, [selectedDayTrainingId]);
 
 
     if (dayTrainings.length === 0) {

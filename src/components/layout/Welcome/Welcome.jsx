@@ -5,9 +5,7 @@ const Welcome = ({name, trainingplanners}) => {
         <div className={"flex flex-row gap-4 items-start w-full max-w-full justify-between mb-8"}>
             <div>
                 <div>
-                    <select>
-                        <option value="sd">{trainingplanners}</option>
-                    </select>
+                    {trainingplanners}
                 </div>
                 <div className={"flex flex-col gap-1 items-start mt-5"}>
                     <h1 className={"text-2xl font-bold"}>Olá, {name}</h1>

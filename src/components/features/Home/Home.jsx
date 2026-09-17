@@ -6,10 +6,11 @@ import Welcome from "@/components/layout/Welcome/Welcome.jsx";
 import {CompletedTrainingsCard} from "@/components/features/Home/CompletedTrainingsCard.jsx";
 import {TotalVolumeMonthCard} from "@/components/features/Home/TotalVolumeMonthCard.jsx";
 import {TrainingPlannersList} from "@/components/features/Home/TrainingPlannersList.jsx";
+import {DayTrainingOfDayWeek} from "@/components/features/Home/DayTrainingOfDayWeek.jsx";
 
 function Home() {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full min-w-full h-full">
             <TrainingPlannersList />
             <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2 ">
@@ -18,7 +19,7 @@ function Home() {
                 <CompletedTrainingsCard />
                 <TotalVolumeMonthCard />
                 <InfoCard link={false} title={"Sequência atual"} value={"7 dias"} description={"continue assim"} icon={<Flame size={24} color={"var(--color-primary)"} />} />
-                <InfoCard link={true} title={"Treino pendente"} value={"Peito e triceps"} description={"esta semana"} icon={<Calendar size={24} color={"var(--color-primary)"} />} />
+                <DayTrainingOfDayWeek />
             </div>
             <MoreAction />
         </div>

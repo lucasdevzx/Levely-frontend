@@ -1,7 +1,11 @@
 import { ChevronRight } from 'lucide-react'
 import {Link} from "react-router";
+import {useDayTrainingStore} from "@/components/hooks/useDayTrainingStore.js";
 
-const InfoCard = ({ title, value, description, icon, link }) => {
+const InfoCard = ({ id, title, value, description, icon, link }) => {
+
+    const {setSelectedDayTrainingId} = useDayTrainingStore();
+
     if (link === false) {
         return (
             <div className={"flex flex-row min-w-full w-full max-w-full min-h-25 p-4 items-start component-background " +
@@ -25,7 +29,7 @@ const InfoCard = ({ title, value, description, icon, link }) => {
 
     if (link === true) {
         return (
-            <Link to={"/daytraining"} className={"flex flex-row min-w-full w-full max-w-full min-h-25 p-4 items-start component-background " +
+            <Link to={"/daytraining"} onClick={(e) => setSelectedDayTrainingId(id)} className={"flex flex-row min-w-full w-full max-w-full min-h-25 p-4 items-start component-background " +
                 "border-zinc-700/20 rounded-lg justify-between box-border hover:bg-card-elevated-2 transition-colors duration-300 cursor-pointer" }>
                 <div className={"flex flex-col gap-sp items-start min-w-0 max-w-[80%] wrap-anywhere min-h-full max-h-full"}>
                     <p className={"text-[0.7rem] font-medium text-text-secondary"}>{title}</p>

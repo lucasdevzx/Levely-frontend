@@ -19,11 +19,21 @@ export function DayTrainingWorkoutLogInfo({dayTrainingWorkoutId}) {
     }, [dayTrainingWorkoutId])
 
     if (dayTrainingWorkoutLog === null) {
-        return <p className="text-center text-gray-500">Nenhuma informação disponível.</p>;
+        return null;
     }
 
-    return (
-        <TrainingFooterInfo time={dayTrainingWorkoutLog.timeTraining} badgeText={"Concluído"} />
-    )
+    if (dayTrainingWorkoutLog.completed === true) {
+        const completedAt = new Date(dayTrainingWorkoutLog.completedAt);
+        const hours = completedAt.getHours().toString().padStart(2, '0');
+        const minutes = completedAt.getMinutes().toString().padStart(2, '0');
+        const timeString = `${hours}:${minutes}`;
+        return (
+            <TrainingFooterInfo completed={true} time={dayTrainingWorkoutLog.timeTraining} badgeText={timeString} />
+        );
+    }
+
+    if (dayTrainingWorkoutLog.completed === false) {
+        return <TrainingFooterInfo completed={false} />
+    }
 
 }

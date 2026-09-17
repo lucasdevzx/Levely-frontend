@@ -23,7 +23,7 @@ export function DayTraining({ trainingcards }) {
                 </div>
             </div>
 
-            <div className={"flex flex-col w-full h-[400px]"}>
+            <div className={"flex flex-col w-full h-fit max-h-100"}>
                 <DayTrainingWorkoutList />
             </div>
 

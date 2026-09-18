@@ -6,7 +6,9 @@ import Welcome from "@/components/layout/Welcome/Welcome.jsx";
 import {CompletedTrainingsCard} from "@/components/features/Home/CompletedTrainingsCard.jsx";
 import {TotalVolumeMonthCard} from "@/components/features/Home/TotalVolumeMonthCard.jsx";
 import {TrainingPlannersList} from "@/components/features/Home/TrainingPlannersList.jsx";
-import {DayTrainingOfDayWeek} from "@/components/features/Home/DayTrainingOfDayWeek.jsx";
+import {DayTrainingOfDayWeekCard} from "@/components/features/Home/DayTrainingOfDayWeekCard.jsx";
+import {ProgressGoalCard} from "@/components/features/Home/ProgressGoalCard.jsx";
+import {HitDaysCard} from "@/components/features/Home/HitDaysCard.jsx";
 
 function Home() {
     return (
@@ -14,12 +16,12 @@ function Home() {
             <TrainingPlannersList />
             <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2 ">
-                    <ProgressCard className={"col-span-2"} description="Seu progresso" />
+                    <ProgressGoalCard />
                 </div>
                 <CompletedTrainingsCard />
                 <TotalVolumeMonthCard />
-                <InfoCard link={false} title={"Sequência atual"} value={"7 dias"} description={"continue assim"} icon={<Flame size={24} color={"var(--color-primary)"} />} />
-                <DayTrainingOfDayWeek />
+                <HitDaysCard />
+                <DayTrainingOfDayWeekCard />
             </div>
             <MoreAction />
         </div>

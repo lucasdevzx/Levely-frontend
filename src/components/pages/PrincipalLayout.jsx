@@ -22,7 +22,7 @@ function PrincipalLayout() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -12 }}
                     transition={{ duration: 0.25, ease: "easeInOut" }}
-                    className="flex-1 w-full"
+                    className="flex-1 w-full min-h-0 flex flex-col"
                 >
                     <AnimatedOutlet />
                 </motion.main>

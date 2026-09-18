@@ -12,13 +12,13 @@ const IconInnerText = ({ url, icon, text }) => {
             }
         >
             {({ isActive }) => (
-                <>
+                <div onClick={() => {}} className={"flex flex-col items-center justify-center gap-1"}>
                     {cloneElement(icon, {
                         className: "transition-colors duration-300",
-                        fill: isActive ? "var(--color-primary)" : "",
+                        stroke: isActive ? "var(--color-primary)" : "var(--color-text)",
                     })}
                     <p className={"text-sm"}>{text}</p>
-                </>
+                </div>
             )}
         </NavLink>
     );

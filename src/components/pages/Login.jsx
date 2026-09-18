@@ -12,11 +12,9 @@ export function Login({onFinally, error}) {
             <h1 className={"text-2xl font-bold text-text"}>Entrar</h1>
             <p className={"text-text opacity-70"}>Entre com suas credenciais</p>
         </div>
-
         <div className={"flex flex-col w-4/5"}>
             <LoginForm onFinally={onFinally} />
         </div>
-
         <div className={"flex flex-col gap-2 items-center justify-end w-4/5 h-1/4"}>
             <div className={"flex flex-row gap-2 items-end justify-center w-full h-full"}>
                 <p>Não tem uma conta?</p>

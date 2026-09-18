@@ -1,31 +1,28 @@
-import {useEffect, useState} from "react";
-import api from "@/api/api.js";
-import {Weight} from "lucide-react";
+import { Weight } from "lucide-react";
 import InfoCard from "@/components/common/InfoCard/InfoCard.jsx";
-import {useTrainingStore} from "@/components/hooks/useTrainingStore.js";
+import Skeleton from "@/components/common/Skeleton/Skeleton.jsx";
+import { useTrainingStore } from "@/components/hooks/useTrainingStore.js";
+import { useFetchWithMinDelay } from "@/components/hooks/useFetchWithMinDelay.js";
 
 export const TotalVolumeMonthCard = () => {
+    const { selectedTrainingPlannerId } = useTrainingStore();
 
-    const [totalVolume, setTotalVolume] = useState(0);
-    const {selectedTrainingPlannerId} = useTrainingStore();
+    const { data, isLoading } = useFetchWithMinDelay(
+        `/daytrainingworkoutlogs/trainingplanner/${selectedTrainingPlannerId}/volume/actualmonth`,
+        { deps: [selectedTrainingPlannerId] }
+    );
 
-    useEffect(() => {
-        api.get(`/daytrainingworkoutlogs/trainingplanner/${selectedTrainingPlannerId}/volume/actualmonth`, {
-            headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`},
-        }).then(response => {
-            setTotalVolume(response.data);
-        }).catch(error => {
-            console.error('Error:', error);
-        });
-    }, [selectedTrainingPlannerId])
+    if (isLoading) {
+        return <Skeleton className="w-full h-25" />;
+    }
 
     return (
         <InfoCard
             link={false}
             title={"Volume total"}
-            value={totalVolume + "Kg"}
+            value={(data ?? 0) + "Kg"}
             description={"nesse mês"}
             icon={<Weight size={24} color={"var(--color-primary)"} />}
         />
-    )
+    );
 }

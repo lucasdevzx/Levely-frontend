@@ -17,7 +17,7 @@ const IconOutText = ({ icon, text, link }) => {
         return (
             <a href="#" className={"flex flex-col w-fit justify-center "}>
                 <div className={"flex flex-col items-center component-background justify-center rounded-lg w-15 min-h-15 p-2" +
-                    "hover:bg-card-elevated-3 transition-colors duration-300 cursor-pointer"}>
+                    "hover:bg-card-hover transition-colors duration-300 cursor-pointer"}>
                     {icon}
                 </div>
                 <div>

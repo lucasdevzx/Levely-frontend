@@ -12,6 +12,9 @@ import { DayTraining } from "@/components/pages/DayTraining.jsx";
 import { Onboarding } from "@/components/pages/Onboarding.jsx";
 import { PrivateRoute } from "@/components/routes/PrivateRoute.jsx";
 import { LoginAPI } from "@/components/features/Login/LoginAPI.jsx";
+import {DayTrainingWorkoutLog} from "@/components/pages/DayTrainingWorkoutLog.jsx";
+import {WorkoutCreate} from "@/components/pages/WorkoutCreate.jsx";
+import {WorkoutCreateSend} from "@/components/features/Library/WorkoutCreateSend.jsx";
 
 export const routes = createRoutesFromElements(
     <Route element={<RootLayout />}>
@@ -21,14 +24,33 @@ export const routes = createRoutesFromElements(
                     <Home />
                 </PrivateRoute>} />
 
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/week" element={<Week />} />
-            <Route path="/social" element={<Social />} />
-            <Route path="/library" element={<Library />} />
+            <Route path="/profile" element={
+                <PrivateRoute>
+                    <Profile />
+                </PrivateRoute>
+            } />
+            <Route path="/week" element={
+                <PrivateRoute>
+                    <Week />
+                </PrivateRoute>
+            } />
+            <Route path="/social" element={
+                <PrivateRoute>
+                    <Social />
+                </PrivateRoute>
+            } />
+            <Route path="/library" element={
+                <PrivateRoute>
+                    <Library />
+                </PrivateRoute>
+            } />
         </Route>
 
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/login" element={<LoginAPI />} />
         <Route path="/daytraining" element={<DayTraining />} />
+        <Route path="/daytrainingworkoutlog" element={<DayTrainingWorkoutLog />} />
+        <Route path="/workoutcreate" element={<WorkoutCreateSend />} />
+        <Route path={"*"} element={<div>404 Not Found</div>} />
     </Route>
 )

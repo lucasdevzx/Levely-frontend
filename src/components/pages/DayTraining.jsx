@@ -13,12 +13,12 @@ export function DayTraining({ trainingcards }) {
             <div className={"flex flex-col w-full justify-center"}>
                 <div className={"flex flex-col w-full h-fit gap-1 mb-4 justify-center items-start"}>
                     <h1 className={"text-3xl text-text font-bold "}>Exercícios do dia</h1>
-                    <h2 className={"text-sm text-text opacity-70"}>Concluído 0 de 12 exercícios</h2>
+                    <h2 className={"text-sm text-text opacity-70"}>Concluído 2 de 4 exercícios</h2>
                 </div>
 
                 <div>
 
-                    // OPTIONS
+
 
                 </div>
             </div>

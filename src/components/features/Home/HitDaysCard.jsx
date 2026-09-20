@@ -18,7 +18,7 @@ export function HitDaysCard({ progress, goal }) {
     }
 
     return (
-        <InfoCard link={false} title={"Sequência atual"} value={"7 dias"} description={"continue assim"} icon={<Flame size={24} color={"var(--color-primary)"} />} />
+        <InfoCard link={false} title={"Sequência atual"} value={"1 dia"} description={"continue assim"} icon={<Flame size={24} color={"var(--color-primary)"} />} />
     )
 
 }

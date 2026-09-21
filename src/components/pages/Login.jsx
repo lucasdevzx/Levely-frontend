@@ -26,7 +26,7 @@ export function Login({onFinally, error}) {
 
             <div className={"flex flex-row flex-nowrap w-full min-w-0 max-w-full h-full gap-1"}>
                 <ButtonRedirect
-                    url={"http://localhost:8080/oauth2/authorize/"}
+                    url={"http://localhost:8080/oauth2/authorize/google"}
                     icon={<img src={"/images/google-icon.svg"} alt="Google Icon" width={20} height={20} />}
                     text={"Entrar com Google"}
                 />
